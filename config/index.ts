@@ -1,5 +1,3 @@
-import { UnifiedWebpackPluginV5 } from 'weapp-tailwindcss/webpack'
-
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default {
   projectName: 'taro-app',
@@ -48,18 +46,6 @@ export default {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    },
-    webpackChain(chain) {
-      chain.merge({
-        plugin: {
-          install: {
-            plugin: UnifiedWebpackPluginV5,
-            args: [{
-              appType: 'taro'
-            }]
-          }
-        }
-      })
     }
   },
   h5: {
@@ -78,18 +64,6 @@ export default {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    },
-    webpackChain(chain) {
-      chain.merge({
-        plugin: {
-          install: {
-            plugin: UnifiedWebpackPluginV5,
-            args: [{
-              appType: 'taro'
-            }]
-          }
-        }
-      })
     }
   }
 }

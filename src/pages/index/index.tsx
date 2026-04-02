@@ -10,7 +10,7 @@ export default function Index() {
   const [pkResult, setPkResult] = useState<any>(null)
   const [showReward, setShowReward] = useState(false)
 
-  if (!activePet) return <View className="p-4 text-center">请先添加宠物</View>
+  if (!activePet) return <View className="home__empty-state">请先添加宠物</View>
 
   const handlePK = () => {
     setShowPK(true)
@@ -34,56 +34,56 @@ export default function Index() {
   }
 
   return (
-    <View className="min-h-screen pb-20 relative bg-[#f7f8fa] overflow-hidden">
+    <View className="home">
       {/* Global Glowing Background Elements */}
-      <View className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-primary-50 to-transparent pointer-events-none"></View>
-      <View className="absolute top-[-10%] left-[-20%] w-[140%] h-[500px] bg-gradient-radial from-primary-100/60 to-transparent opacity-80 pointer-events-none blur-3xl"></View>
-      <View className="absolute top-[20%] right-[-30%] w-[300px] h-[300px] bg-gradient-radial from-blue-200/40 to-transparent opacity-60 pointer-events-none blur-3xl"></View>
+      <View className="home__bg-glow home__bg-glow--primary"></View>
+      <View className="home__bg-glow home__bg-glow--secondary"></View>
+      <View className="home__bg-glow home__bg-glow--tertiary"></View>
 
       {/* Header Stats */}
-      <View className="px-6 pt-12 pb-6 flex justify-between items-center relative z-10 bg-white/70 backdrop-blur-lg shadow-sm rounded-b-[2rem] border-b border-white/50">
-        <View>
-          <View className="text-2xl font-extrabold text-gray-800 flex items-center gap-2">
+      <View className="home__header">
+        <View className="home__header-info">
+          <View className="home__header-title">
             <Text>{activePet.name}</Text>
-            <View className="bg-primary-100 text-primary-600 text-xs px-2.5 py-1 rounded-full font-bold">
+            <View className="home__header-level">
               <Text>Lv. 5</Text>
             </View>
           </View>
-          <View className="text-sm text-gray-500 mt-1 font-medium"><Text>今天也要开心哦喵~</Text></View>
+          <View className="home__header-subtitle"><Text>今天也要开心哦喵~</Text></View>
         </View>
-        <View className="flex gap-3">
-          <View className="bg-orange-50 rounded-2xl p-2 shadow-sm flex flex-col items-center min-w-[60px] border border-orange-100">
-            <Text className="text-xs font-bold text-primary-600 mt-1">萌力 {activePet.cuteness}</Text>
+        <View className="home__header-stats">
+          <View className="home__stat-item home__stat-item--orange">
+            <Text className="home__stat-value">萌力 {activePet.cuteness}</Text>
           </View>
-          <View className="bg-blue-50 rounded-2xl p-2 shadow-sm flex flex-col items-center min-w-[60px] border border-blue-100">
-            <Text className="text-xs font-bold text-blue-600 mt-1">颜值 {activePet.appearanceScore}</Text>
+          <View className="home__stat-item home__stat-item--blue">
+            <Text className="home__stat-value">颜值 {activePet.appearanceScore}</Text>
           </View>
         </View>
       </View>
 
       {/* Pet Display Area */}
-      <View className="relative w-full h-[380px] flex items-center justify-center mt-6">
+      <View className="home__pet-display">
         {/* Background glow behind pet */}
-        <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-200 rounded-full blur-[40px] opacity-60 animate-pulse"></View>
-        <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-200 rounded-full blur-[30px] opacity-50"></View>
+        <View className="home__pet-glow home__pet-glow--inner"></View>
+        <View className="home__pet-glow home__pet-glow--outer"></View>
         
         {/* Glowing Base Stage */}
-        <View className="absolute bottom-[50px] left-1/2 -translate-x-1/2 w-[240px] h-[50px] bg-gradient-to-b from-primary-200/50 to-transparent rounded-[100%] blur-[10px]"></View>
-        <View className="absolute bottom-[55px] left-1/2 -translate-x-1/2 w-[180px] h-[30px] bg-primary-300/60 rounded-[100%] blur-[6px] animate-pulse"></View>
-        <View className="absolute bottom-[60px] left-1/2 -translate-x-1/2 w-[120px] h-[15px] bg-white/80 rounded-[100%] blur-[3px]"></View>
+        <View className="home__pet-stage home__pet-stage--bottom"></View>
+        <View className="home__pet-stage home__pet-stage--middle"></View>
+        <View className="home__pet-stage home__pet-stage--top"></View>
 
-        <View className="relative z-10 animate-bounce-subtle">
-          <View className="w-60 h-60 rounded-full p-2 bg-white shadow-cute relative">
-            <View className="w-full h-full rounded-full overflow-hidden border-4 border-gray-50">
+        <View className="home__pet-avatar-container">
+          <View className="home__pet-avatar-wrapper">
+            <View className="home__pet-avatar-inner">
               <Image 
                 src={activePet.avatar} 
-                className="w-full h-full object-cover"
+                className="home__pet-avatar-img"
                 mode="aspectFill"
               />
             </View>
             
             {showReward && (
-              <View className="absolute -top-4 right-0 bg-white px-3 py-1.5 rounded-full shadow-lg font-bold text-rose-500 flex items-center gap-1 animate-bounce-subtle">
+              <View className="home__pet-reward">
                 <Text>+10 萌力</Text>
               </View>
             )}
@@ -92,43 +92,43 @@ export default function Index() {
       </View>
 
       {/* Action Buttons */}
-      <View className="px-6 -mt-4 relative z-20">
-        <View className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-soft border border-white/60 flex justify-around">
+      <View className="home__actions">
+        <View className="home__actions-container">
           <View 
             onClick={() => handleInteraction('checkIn')}
-            className="flex flex-col items-center gap-3 group active:scale-95 transition-transform"
+            className="home__action-item"
           >
-            <View className="w-16 h-16 rounded-[1.25rem] bg-gradient-to-br from-blue-100 to-blue-50 text-blue-500 flex items-center justify-center shadow-[4px_4px_10px_rgba(59,130,246,0.15),-4px_-4px_10px_rgba(255,255,255,0.9)] border border-white text-2xl">
-              🐾
+            <View className="home__action-icon home__action-icon--blue">
+              <Text>🐾</Text>
             </View>
-            <Text className="text-sm font-bold text-gray-700">日常打卡</Text>
+            <Text className="home__action-text">日常打卡</Text>
           </View>
           <View 
             onClick={() => handleInteraction('play')}
-            className="flex flex-col items-center gap-3 group active:scale-95 transition-transform"
+            className="home__action-item"
           >
-            <View className="w-16 h-16 rounded-[1.25rem] bg-gradient-to-br from-emerald-100 to-emerald-50 text-emerald-500 flex items-center justify-center shadow-[4px_4px_10px_rgba(16,185,129,0.15),-4px_-4px_10px_rgba(255,255,255,0.9)] border border-white text-2xl">
-              🎾
+            <View className="home__action-icon home__action-icon--emerald">
+              <Text>🎾</Text>
             </View>
-            <Text className="text-sm font-bold text-gray-700">互动玩耍</Text>
+            <Text className="home__action-text">互动玩耍</Text>
           </View>
           <View 
             onClick={handlePK}
-            className="flex flex-col items-center gap-3 group active:scale-95 transition-transform"
+            className="home__action-item"
           >
-            <View className="w-16 h-16 rounded-[1.25rem] bg-gradient-to-br from-rose-100 to-rose-50 text-rose-500 flex items-center justify-center shadow-[4px_4px_10px_rgba(244,63,94,0.15),-4px_-4px_10px_rgba(255,255,255,0.9)] border border-white text-2xl">
-              ⚔️
+            <View className="home__action-icon home__action-icon--rose">
+              <Text>⚔️</Text>
             </View>
-            <Text className="text-sm font-bold text-gray-700">匹配PK</Text>
+            <Text className="home__action-text">匹配PK</Text>
           </View>
         </View>
       </View>
 
       {/* Big PK Button */}
-      <View className="px-6 mt-8">
+      <View className="home__pk-action">
         <View 
           onClick={handlePK}
-          className="w-full bg-gradient-to-r from-primary-400 to-primary-600 text-white rounded-full py-4.5 font-black text-lg shadow-cute flex items-center justify-center gap-2 active:scale-95 transition-transform"
+          className="home__pk-btn"
         >
           <Text>✨ 开启萌宠对决 ✨</Text>
         </View>
@@ -136,34 +136,34 @@ export default function Index() {
 
       {/* PK Modal */}
       {showPK && (
-        <View className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-6">
-          <View className="bg-white w-full max-w-sm rounded-3xl p-6 relative overflow-hidden shadow-2xl">
+        <View className="home__modal">
+          <View className="home__modal-content">
             {!pkResult ? (
-              <View className="text-center py-10">
-                <View className="w-24 h-24 mx-auto border-4 border-primary-100 rounded-full border-t-primary-500 animate-spin mb-6"></View>
-                <View className="text-xl font-bold text-gray-800"><Text>正在匹配对手...</Text></View>
-                <View className="text-gray-500 mt-2 text-sm"><Text>综合颜值、萌力值与活跃度评估中</Text></View>
+              <View className="home__modal-loading">
+                <View className="home__modal-spinner"></View>
+                <View className="home__modal-title"><Text>正在匹配对手...</Text></View>
+                <View className="home__modal-desc"><Text>综合颜值、萌力值与活跃度评估中</Text></View>
               </View>
             ) : (
-              <View className="text-center py-6">
-                <View className="text-6xl mb-4"><Text>{pkResult.isWin ? '🏆' : '🫂'}</Text></View>
-                <View className={`text-2xl font-black mb-2 ${pkResult.isWin ? 'text-primary-600' : 'text-gray-600'}`}>
+              <View className="home__modal-result">
+                <View className="home__modal-icon"><Text>{pkResult.isWin ? '🏆' : '🫂'}</Text></View>
+                <View className={`home__modal-result-title ${pkResult.isWin ? 'home__modal-result-title--win' : 'home__modal-result-title--lose'}`}>
                   <Text>{pkResult.isWin ? 'PK 胜利！' : '再接再厉！'}</Text>
                 </View>
-                <View className="text-gray-600 mb-8 font-medium">
+                <View className="home__modal-result-desc">
                   <Text>{pkResult.isWin ? '你的宝贝太迷人了，对手甘拜下风' : '对方也是个小可爱呢，差一点点就赢了'}</Text>
                 </View>
                 
-                <View className="bg-primary-50 rounded-2xl p-4 mb-8">
-                  <View className="text-sm text-primary-800 font-bold mb-1"><Text>获得萌力值奖励</Text></View>
-                  <View className="text-3xl font-black text-primary-500 flex items-center justify-center gap-1">
+                <View className="home__modal-reward">
+                  <View className="home__modal-reward-label"><Text>获得萌力值奖励</Text></View>
+                  <View className="home__modal-reward-value">
                     <Text>+{pkResult.reward}</Text>
                   </View>
                 </View>
 
                 <View 
                   onClick={closePK}
-                  className="w-full bg-gray-900 text-white rounded-2xl py-3.5 font-bold shadow-md active:scale-95 transition-transform flex items-center justify-center"
+                  className="home__modal-btn"
                 >
                   <Text>开心收下</Text>
                 </View>

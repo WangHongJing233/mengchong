@@ -33,52 +33,49 @@ export default function HealthTracking() {
   }
 
   return (
-    <View className="min-h-screen bg-gradient-to-br from-orange-50 via-[#fffaf0] to-orange-100 transition-all duration-500 pb-10">
+    <View className="health-page">
       {/* Header */}
-      <View className="bg-white px-4 pt-12 pb-4 sticky top-0 z-20 shadow-sm flex flex-row items-center">
-        <View onClick={handleBack} className="p-2 -ml-2 text-gray-800">
+      <View className="health-page__header">
+        <View onClick={handleBack} className="health-page__back-btn">
           <Text>⬅️</Text>
         </View>
-        <View className="text-lg font-bold text-gray-800 flex-1 text-center pr-8">
+        <View className="health-page__title">
           <Text>体重追踪</Text>
         </View>
       </View>
 
-      <View className="p-6">
-        <View className="bg-white rounded-3xl p-6 shadow-soft mb-6">
-          <View className="flex flex-row items-center justify-between mb-6">
-            <View className="flex flex-row items-center gap-3">
-              <Image src={activePet.avatar} className="w-12 h-12 rounded-full" mode="aspectFill" />
-              <View>
-                <View className="font-bold text-gray-800"><Text>{activePet.name} 的体重曲线</Text></View>
-                <View className="text-xs text-gray-500"><Text>单位：kg</Text></View>
+      <View className="health-page__content">
+        <View className="health-page__card">
+          <View className="health-page__pet-info">
+            <View className="health-page__pet-profile">
+              <Image src={activePet.avatar} className="health-page__pet-avatar" mode="aspectFill" />
+              <View className="health-page__pet-details">
+                <View className="health-page__pet-name"><Text>{activePet.name} 的体重曲线</Text></View>
+                <View className="health-page__pet-unit"><Text>单位：kg</Text></View>
               </View>
             </View>
-            <View className="text-2xl font-black text-primary-500">
+            <View className="health-page__current-weight">
               <Text>{(activePet.weightRecords.length > 0 && activePet.weightRecords[activePet.weightRecords.length - 1].weight) ? activePet.weightRecords[activePet.weightRecords.length - 1].weight : '--'}</Text>
             </View>
           </View>
           
-          <View className="w-full mt-6 bg-[#fcfaf5] border border-gray-100 rounded-2xl p-5 shadow-inner min-h-[160px]">
-            <View className="flex flex-row flex-wrap justify-between gap-y-6">
+          <View className="health-page__records-board">
+            <View className="health-page__records-list">
               {activePet.weightRecords.length > 0 ? (
                 activePet.weightRecords.slice(-6).map((record: any, index: number) => {
-                  const rotations = ['-rotate-3', 'rotate-2', '-rotate-2', 'rotate-3', '-rotate-1', 'rotate-1']
-                  const colors = ['bg-yellow-100', 'bg-blue-50', 'bg-pink-50', 'bg-green-50', 'bg-purple-50', 'bg-orange-50']
-                  
                   return (
                     <View 
                       key={index} 
-                      className={`w-[47%] ${colors[index % colors.length]} transform ${rotations[index % rotations.length]} p-3 rounded-md shadow-soft relative flex flex-col items-center justify-center transition-transform hover:scale-105`}
+                      className={`health-page__record-item health-page__record-item--color-${index % 6} health-page__record-item--rotate-${index % 6}`}
                     >
-                      <View className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-10 h-4 bg-white/60 shadow-sm"></View>
-                      <Text className="text-gray-500 text-xs mb-1 mt-2">{record.date}</Text>
-                      <Text className="font-bold text-gray-800 text-base">{record.weight} <Text className="text-xs font-normal">kg</Text></Text>
+                      <View className="health-page__record-tape"></View>
+                      <Text className="health-page__record-date">{record.date}</Text>
+                      <Text className="health-page__record-weight">{record.weight} <Text className="health-page__record-weight-unit">kg</Text></Text>
                     </View>
                   )
                 })
               ) : (
-                <View className="w-full text-center py-8 text-gray-400">
+                <View className="health-page__record-item--empty">
                   <Text>暂无体重记录，快来添加吧~</Text>
                 </View>
               )}
@@ -89,31 +86,31 @@ export default function HealthTracking() {
         {!showForm ? (
           <View 
             onClick={() => setShowForm(true)}
-            className="w-full bg-primary-50 text-primary-600 rounded-2xl py-4 font-bold flex flex-row items-center justify-center gap-2"
+            className="health-page__add-btn"
           >
             <Text>+ 记录今日体重</Text>
           </View>
         ) : (
-          <Form onSubmit={handleAdd} className="bg-white rounded-3xl p-6 shadow-soft">
-            <View className="font-bold text-gray-800 mb-4"><Text>记录体重 (kg)</Text></View>
+          <Form onSubmit={handleAdd} className="health-page__form">
+            <View className="health-page__form-title"><Text>记录体重 (kg)</Text></View>
             <Input 
               type="digit" 
               value={weight}
               onInput={(e) => setWeight(e.detail.value)}
               placeholder="请输入体重，如：4.5"
-              className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 mb-4"
+              className="health-page__form-input"
               autoFocus
             />
-            <View className="flex flex-row gap-3">
+            <View className="health-page__form-actions">
               <Button 
                 onClick={() => setShowForm(false)}
-                className="flex-1 bg-gray-100 text-gray-600 rounded-xl py-3 font-bold text-center m-0"
+                className="health-page__btn health-page__btn--cancel"
               >
                 <Text>取消</Text>
               </Button>
               <Button 
                 formType="submit"
-                className="flex-1 bg-primary-500 text-white rounded-xl py-3 font-bold text-center m-0"
+                className="health-page__btn health-page__btn--submit"
               >
                 <Text>保存</Text>
               </Button>

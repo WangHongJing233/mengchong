@@ -1,3 +1,378 @@
+@import "../../app.scss";
+
 .profile {
-  // Profile page specific styles
+  min-height: 100vh;
+  padding-bottom: 5rem;
+  background-color: #f7f8fa;
+
+  // -- Login Section --
+  &__login {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-bg;
+    padding: $spacing-6;
+  }
+
+  &__login-icon-wrapper {
+    width: 6rem;
+    height: 6rem;
+    background-color: #ffedd5;
+    border-radius: $border-radius-full;
+    @include flex-center;
+    margin-bottom: $spacing-6;
+  }
+
+  &__login-icon {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  &__login-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: $color-gray-800;
+    margin-bottom: $spacing-2;
+  }
+
+  &__login-subtitle {
+    color: $color-gray-500;
+    margin-bottom: $spacing-8;
+    text-align: center;
+  }
+
+  &__login-btn {
+    width: 100%;
+    max-width: 20rem;
+    background-color: #10b981;
+    color: $color-white;
+    border-radius: $border-radius-full;
+    padding: 0.875rem 0;
+    @include flex-center;
+    gap: $spacing-2;
+    box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
+  }
+
+  &__login-btn-text {
+    font-weight: bold;
+    font-size: 1.125rem;
+  }
+
+  // -- Authenticated View --
+  
+  // Header
+  &__header {
+    background: linear-gradient(to bottom right, #fff7ed, $color-white);
+    padding: 4rem $spacing-6 2.5rem;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__header-bg-element {
+    position: absolute;
+    border-radius: $border-radius-full;
+    filter: blur(24px);
+    
+    &--1 {
+      top: -2.5rem;
+      right: -2.5rem;
+      width: 10rem;
+      height: 10rem;
+      background-color: rgba(255, 237, 213, 0.5);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    &--2 {
+      top: 5rem;
+      left: -2.5rem;
+      width: 8rem;
+      height: 8rem;
+      background-color: rgba(254, 215, 170, 0.3);
+      filter: blur(16px);
+      animation: float 3s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+  }
+
+  &__header-settings {
+    position: absolute;
+    top: 3rem;
+    right: 1.5rem;
+    color: $color-gray-400;
+    font-size: 1.25rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: $border-radius-full;
+    @include flex-center;
+    @include backdrop-blur(4px, rgba(255, 255, 255, 0.3));
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    z-index: 10;
+  }
+
+  &__user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__avatar-wrapper {
+    position: relative;
+  }
+
+  &__avatar {
+    width: 5rem;
+    height: 5rem;
+    border-radius: $border-radius-full;
+    border: 4px solid $color-white;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  }
+
+  &__status-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #4ade80;
+    border: 2px solid $color-white;
+    border-radius: $border-radius-full;
+  }
+
+  &__user-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__nickname {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $color-gray-800;
+  }
+
+  &__activity-badge {
+    font-size: 0.875rem;
+    color: #ea580c;
+    margin-top: $spacing-2;
+    background-color: rgba(255, 237, 213, 0.8);
+    padding: 0.25rem 0.75rem;
+    border-radius: $border-radius-full;
+    display: inline-block;
+    @include backdrop-blur(4px, rgba(255, 237, 213, 0.8));
+    font-weight: bold;
+    align-self: flex-start;
+  }
+
+  // Pets Section
+  &__pets-section {
+    margin-top: 2rem;
+    padding: 0 1rem;
+    animation: slide-up 0.5s ease-out forwards;
+  }
+
+  &__pets-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  &__pets-title {
+    font-weight: bold;
+    font-size: 1.125rem;
+    color: $color-gray-800;
+  }
+
+  &__pets-add-btn {
+    font-size: 0.875rem;
+    color: #f97316;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25rem;
+    background-color: #fff7ed;
+    padding: 0.25rem 0.75rem;
+    border-radius: $border-radius-full;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  &__pets-scroll {
+    white-space: nowrap;
+    padding-bottom: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  &__pet-card {
+    display: inline-block;
+    margin-right: 1rem;
+    width: 140px;
+    border-radius: 2rem;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+    vertical-align: top;
+    position: relative;
+    overflow: hidden;
+    background-color: $color-white;
+    color: $color-gray-800;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f9fafb;
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &--active {
+      background: linear-gradient(to bottom right, #fb923c, #f97316);
+      color: $color-white;
+      box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
+      transform: scale(1.05);
+      border: 1px solid #fdba74;
+
+      &:active {
+        transform: scale(1);
+      }
+    }
+  }
+
+  &__pet-card-glow {
+    position: absolute;
+    right: -1rem;
+    top: -1rem;
+    width: 5rem;
+    height: 5rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: $border-radius-full;
+    filter: blur(12px);
+  }
+
+  &__pet-avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: $border-radius-full;
+    margin-bottom: 0.75rem;
+    object-fit: cover;
+    border: 2px solid #f3f4f6;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+    &--active {
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: none;
+    }
+  }
+
+  &__pet-name {
+    font-weight: 800;
+    font-size: 1rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  &__pet-cuteness {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    font-weight: 500;
+    position: relative;
+    z-index: 10;
+    color: $color-gray-500;
+
+    &--active {
+      color: #ffedd5;
+    }
+  }
+
+  // Menus Section
+  &__menus-section {
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: slide-up 0.5s ease-out forwards;
+    animation-delay: 0.1s;
+    opacity: 0;
+  }
+
+  &__menu-card {
+    background-color: $color-white;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f9fafb;
+  }
+
+  &__menu-item {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 1.5rem;
+    transition: background-color 0.2s ease;
+
+    &:active {
+      background-color: #f9fafb;
+    }
+  }
+
+  &__menu-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__menu-icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+    border-radius: $border-radius-full;
+    @include flex-center;
+    font-size: 1.25rem;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+
+    &--health {
+      background-color: #eff6ff;
+      color: #3b82f6;
+    }
+
+    &--logout {
+      background-color: #fef2f2;
+      color: #ef4444;
+    }
+  }
+
+  &__menu-icon {
+    &--health {
+      animation: bounce-subtle 2s infinite;
+    }
+  }
+
+  &__menu-title {
+    font-weight: bold;
+    color: $color-gray-800;
+    font-size: 1rem;
+  }
+
+  &__menu-arrow {
+    width: 2rem;
+    height: 2rem;
+    border-radius: $border-radius-full;
+    background-color: #f9fafb;
+    @include flex-center;
+    color: $color-gray-400;
+    font-weight: bold;
+  }
 }

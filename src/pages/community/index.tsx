@@ -119,48 +119,48 @@ export default function Community() {
   }
 
   return (
-    <View className="flex flex-col h-screen overflow-hidden bg-[#f7f8fa] relative">
+    <View className="community-page">
       {/* Header */}
-      <View className="absolute top-0 left-0 right-0 bg-white/70 backdrop-blur-xl px-6 pt-12 pb-4 z-20">
-        <View className="text-2xl font-black text-gray-800"><Text>萌宠社区</Text></View>
+      <View className="community-page__header">
+        <View className="community-page__title"><Text>萌宠社区</Text></View>
       </View>
 
       {/* Feed */}
-      <ScrollView scrollY className="flex-1 w-full px-4 pt-28 pb-32">
-        <View className="flex flex-col">
+      <ScrollView scrollY className="community-page__feed">
+        <View className="community-page__post-list">
           {posts.map((post) => (
-            <View key={post.id} className="bg-white rounded-4xl shadow-[0_8px_30px_rgba(255,143,10,0.08)] mb-8">
+            <View key={post.id} className="post-card">
               {/* User Info */}
-              <View className="p-5 flex flex-row items-center justify-between">
-                <View className="flex flex-row items-center gap-4">
-                  <Image src={post.authorAvatar} className="w-12 h-12 rounded-full border border-gray-100" />
-                  <View>
-                    <View className="font-extrabold text-base text-gray-800"><Text>{post.author}</Text></View>
-                    <View className="text-xs text-gray-400 mt-0.5"><Text>{post.time}</Text></View>
+              <View className="post-card__header">
+                <View className="post-card__author">
+                  <Image src={post.authorAvatar} className="post-card__avatar" />
+                  <View className="post-card__author-info">
+                    <View className="post-card__author-name"><Text>{post.author}</Text></View>
+                    <View className="post-card__time"><Text>{post.time}</Text></View>
                   </View>
                 </View>
-                <View className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400">
+                <View className="post-card__more-btn">
                   <Text>•••</Text>
                 </View>
               </View>
               
               {/* Content */}
-              <View className="px-5 pb-3 text-[15px] text-gray-700 leading-relaxed font-medium">
+              <View className="post-card__content">
                 <Text>{post.content}</Text>
               </View>
               
               {/* Image */}
-              <View className="mx-5 mb-4 p-2 rounded-3xl bg-gray-50 aspect-square">
-                <Image src={post.image} className="w-full h-full object-cover rounded-2xl shadow-sm" mode="aspectFill" />
+              <View className="post-card__media">
+                <Image src={post.image} className="post-card__image" mode="aspectFill" />
               </View>
               
               {/* Comments Section */}
               {post.comments.length > 0 && (
-                <View className="mx-5 mb-5 p-4 bg-gray-50/80 rounded-2xl">
+                <View className="post-card__comments">
                   {post.comments.map(comment => (
-                    <View key={comment.id} className="mb-2 last:mb-0 flex flex-row items-start gap-2">
-                      <Text className="font-extrabold text-gray-800 text-[14px] shrink-0">{comment.user}: </Text>
-                      <Text className="text-gray-600 text-[14px] leading-snug">{comment.content}</Text>
+                    <View key={comment.id} className="post-card__comment-item">
+                      <Text className="post-card__comment-user">{comment.user}: </Text>
+                      <Text className="post-card__comment-text">{comment.content}</Text>
                     </View>
                   ))}
                 </View>
@@ -168,18 +168,18 @@ export default function Community() {
 
               {/* Comment Input */}
               {activeCommentPostId === post.id && (
-                <View className="mx-5 mb-5 p-4 flex flex-row items-center gap-3 bg-white rounded-2xl shadow-sm">
+                <View className="post-card__comment-input-wrapper">
                   <Input 
                     value={commentText}
                     onInput={(e) => setCommentText(e.detail.value)}
                     placeholder="说点什么吧..."
-                    className="flex-1 bg-gray-50 px-5 py-3 rounded-full text-sm font-medium text-gray-700"
+                    className="post-card__comment-input"
                     confirmType="send"
                     onConfirm={() => handleAddComment(post.id)}
                   />
                   <View 
                     onClick={() => handleAddComment(post.id)}
-                    className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center font-bold text-sm shadow-cute active:scale-95 transition-transform"
+                    className="post-card__comment-submit"
                   >
                     发送
                   </View>
@@ -187,20 +187,20 @@ export default function Community() {
               )}
 
               {/* Actions */}
-              <View className="px-5 pb-5 pt-2 flex flex-row items-center gap-4">
+              <View className="post-card__actions">
                 <View 
-                  className={`flex flex-row items-center gap-2 px-4 py-2 rounded-full transition-colors active:scale-90 ${post.isLiked ? 'bg-rose-50 text-rose-500' : 'bg-gray-50 text-gray-500'}`}
+                  className={`post-card__action-btn post-card__action-btn--like ${post.isLiked ? 'is-liked' : ''}`}
                   onClick={() => handleLike(post.id)}
                 >
-                  <Text className="text-lg">{post.isLiked ? '❤️' : '🤍'}</Text>
-                  <Text className="text-sm font-bold">{post.likes}</Text>
+                  <Text className="post-card__action-icon">{post.isLiked ? '❤️' : '🤍'}</Text>
+                  <Text className="post-card__action-count">{post.likes}</Text>
                 </View>
                 <View 
-                  className="flex flex-row items-center gap-2 px-4 py-2 rounded-full bg-gray-50 text-gray-500 hover:bg-blue-50 hover:text-blue-500 transition-colors active:scale-90"
+                  className="post-card__action-btn post-card__action-btn--comment"
                   onClick={() => setActiveCommentPostId(activeCommentPostId === post.id ? null : post.id)}
                 >
-                  <Text className="text-lg">💬</Text>
-                  <Text className="text-sm font-bold">{post.comments.length}</Text>
+                  <Text className="post-card__action-icon">💬</Text>
+                  <Text className="post-card__action-count">{post.comments.length}</Text>
                 </View>
               </View>
 
@@ -210,8 +210,8 @@ export default function Community() {
       </ScrollView>
       
       {/* FAB */}
-      <View className="fixed bottom-24 right-6 w-14 h-14 bg-gradient-to-tr from-primary-400 to-primary-600 text-white rounded-full shadow-cute flex items-center justify-center active:scale-95 transition-transform z-50">
-        <Text className="text-3xl font-light pb-1">+</Text>
+      <View className="community-page__fab">
+        <Text className="community-page__fab-icon">+</Text>
       </View>
     </View>
   )

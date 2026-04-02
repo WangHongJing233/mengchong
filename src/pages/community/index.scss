@@ -1,3 +1,268 @@
-.community {
-  // Community page specific styles
+@import "../../app.scss";
+
+.community-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f7f8fa;
+  position: relative;
+
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    padding: 48px 24px 16px;
+    z-index: 20;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 900;
+    color: $color-gray-800;
+  }
+
+  &__feed {
+    flex: 1;
+    width: 100%;
+    padding: 112px 16px 128px;
+    box-sizing: border-box;
+  }
+
+  &__post-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__fab {
+    position: fixed;
+    bottom: 96px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(to top right, #fb923c, #ea580c); // orange-400 to orange-600 approx
+    color: white;
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3); // primary color shadow
+    @include flex-center;
+    z-index: 50;
+    transition: transform 0.2s ease;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &__fab-icon {
+    font-size: 30px;
+    font-weight: 300;
+    padding-bottom: 4px;
+  }
+}
+
+.post-card {
+  background-color: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 8px 30px rgba(255, 143, 10, 0.08);
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__author {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid $color-gray-100;
+  }
+
+  &__author-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__author-name {
+    font-weight: 800;
+    font-size: 16px;
+    color: $color-gray-800;
+  }
+
+  &__time {
+    font-size: 12px;
+    color: $color-gray-400;
+    margin-top: 2px;
+  }
+
+  &__more-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #f9fafb;
+    @include flex-center;
+    color: $color-gray-400;
+  }
+
+  &__content {
+    padding: 0 20px 12px;
+    font-size: 15px;
+    color: $color-gray-700;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+
+  &__media {
+    margin: 0 20px 16px;
+    padding: 8px;
+    border-radius: 24px;
+    background-color: #f9fafb;
+    aspect-ratio: 1 / 1;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  &__comments {
+    margin: 0 20px 20px;
+    padding: 16px;
+    background-color: rgba(249, 250, 251, 0.8);
+    border-radius: 16px;
+  }
+
+  &__comment-item {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__comment-user {
+    font-weight: 800;
+    color: $color-gray-800;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  &__comment-text {
+    color: $color-gray-600;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  &__comment-input-wrapper {
+    margin: 0 20px 20px;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  &__comment-input {
+    flex: 1;
+    background-color: #f9fafb;
+    padding: 12px 20px;
+    border-radius: 9999px;
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-gray-700;
+  }
+
+  &__comment-submit {
+    width: 48px;
+    height: 48px;
+    background-color: $color-primary;
+    color: white;
+    border-radius: 50%;
+    @include flex-center;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+    transition: transform 0.2s ease;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  &__actions {
+    padding: 8px 20px 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__action-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    &--like {
+      background-color: #f9fafb;
+      color: $color-gray-500;
+
+      &.is-liked {
+        background-color: #fff1f2; // rose-50
+        color: #f43f5e; // rose-500
+      }
+    }
+
+    &--comment {
+      background-color: #f9fafb;
+      color: $color-gray-500;
+
+      &:hover {
+        background-color: #eff6ff; // blue-50
+        color: #3b82f6; // blue-500
+      }
+    }
+  }
+
+  &__action-icon {
+    font-size: 18px;
+  }
+
+  &__action-count {
+    font-size: 14px;
+    font-weight: 700;
+  }
 }
