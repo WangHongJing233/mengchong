@@ -34,9 +34,14 @@ export default function Index() {
   }
 
   return (
-    <View className="min-h-screen pb-20 relative bg-[#f7f8fa]">
+    <View className="min-h-screen pb-20 relative bg-[#f7f8fa] overflow-hidden">
+      {/* Global Glowing Background Elements */}
+      <View className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-primary-50 to-transparent pointer-events-none"></View>
+      <View className="absolute top-[-10%] left-[-20%] w-[140%] h-[500px] bg-gradient-radial from-primary-100/60 to-transparent opacity-80 pointer-events-none blur-3xl"></View>
+      <View className="absolute top-[20%] right-[-30%] w-[300px] h-[300px] bg-gradient-radial from-blue-200/40 to-transparent opacity-60 pointer-events-none blur-3xl"></View>
+
       {/* Header Stats */}
-      <View className="px-6 pt-12 pb-6 flex justify-between items-center relative z-10 bg-white shadow-sm rounded-b-[2rem]">
+      <View className="px-6 pt-12 pb-6 flex justify-between items-center relative z-10 bg-white/70 backdrop-blur-lg shadow-sm rounded-b-[2rem] border-b border-white/50">
         <View>
           <View className="text-2xl font-extrabold text-gray-800 flex items-center gap-2">
             <Text>{activePet.name}</Text>
@@ -58,9 +63,15 @@ export default function Index() {
 
       {/* Pet Display Area */}
       <View className="relative w-full h-[380px] flex items-center justify-center mt-6">
-        <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-100 rounded-full blur-3xl opacity-50 animate-pulse"></View>
-        <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-100 rounded-full blur-2xl opacity-40"></View>
+        {/* Background glow behind pet */}
+        <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-200 rounded-full blur-[40px] opacity-60 animate-pulse"></View>
+        <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-200 rounded-full blur-[30px] opacity-50"></View>
         
+        {/* Glowing Base Stage */}
+        <View className="absolute bottom-[50px] left-1/2 -translate-x-1/2 w-[240px] h-[50px] bg-gradient-to-b from-primary-200/50 to-transparent rounded-[100%] blur-[10px]"></View>
+        <View className="absolute bottom-[55px] left-1/2 -translate-x-1/2 w-[180px] h-[30px] bg-primary-300/60 rounded-[100%] blur-[6px] animate-pulse"></View>
+        <View className="absolute bottom-[60px] left-1/2 -translate-x-1/2 w-[120px] h-[15px] bg-white/80 rounded-[100%] blur-[3px]"></View>
+
         <View className="relative z-10 animate-bounce-subtle">
           <View className="w-60 h-60 rounded-full p-2 bg-white shadow-cute relative">
             <View className="w-full h-full rounded-full overflow-hidden border-4 border-gray-50">
@@ -82,12 +93,12 @@ export default function Index() {
 
       {/* Action Buttons */}
       <View className="px-6 -mt-4 relative z-20">
-        <View className="bg-white rounded-3xl p-6 shadow-soft flex justify-around">
+        <View className="bg-white/80 backdrop-blur-xl rounded-3xl p-6 shadow-soft border border-white/60 flex justify-around">
           <View 
             onClick={() => handleInteraction('checkIn')}
             className="flex flex-col items-center gap-3 group active:scale-95 transition-transform"
           >
-            <View className="w-16 h-16 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center shadow-inner text-2xl">
+            <View className="w-16 h-16 rounded-[1.25rem] bg-gradient-to-br from-blue-100 to-blue-50 text-blue-500 flex items-center justify-center shadow-[4px_4px_10px_rgba(59,130,246,0.15),-4px_-4px_10px_rgba(255,255,255,0.9)] border border-white text-2xl">
               🐾
             </View>
             <Text className="text-sm font-bold text-gray-700">日常打卡</Text>
@@ -96,7 +107,7 @@ export default function Index() {
             onClick={() => handleInteraction('play')}
             className="flex flex-col items-center gap-3 group active:scale-95 transition-transform"
           >
-            <View className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center shadow-inner text-2xl">
+            <View className="w-16 h-16 rounded-[1.25rem] bg-gradient-to-br from-emerald-100 to-emerald-50 text-emerald-500 flex items-center justify-center shadow-[4px_4px_10px_rgba(16,185,129,0.15),-4px_-4px_10px_rgba(255,255,255,0.9)] border border-white text-2xl">
               🎾
             </View>
             <Text className="text-sm font-bold text-gray-700">互动玩耍</Text>
@@ -105,7 +116,7 @@ export default function Index() {
             onClick={handlePK}
             className="flex flex-col items-center gap-3 group active:scale-95 transition-transform"
           >
-            <View className="w-16 h-16 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shadow-inner text-2xl">
+            <View className="w-16 h-16 rounded-[1.25rem] bg-gradient-to-br from-rose-100 to-rose-50 text-rose-500 flex items-center justify-center shadow-[4px_4px_10px_rgba(244,63,94,0.15),-4px_-4px_10px_rgba(255,255,255,0.9)] border border-white text-2xl">
               ⚔️
             </View>
             <Text className="text-sm font-bold text-gray-700">匹配PK</Text>

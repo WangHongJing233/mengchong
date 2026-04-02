@@ -33,7 +33,7 @@ export default function HealthTracking() {
   }
 
   return (
-    <View className="min-h-screen bg-[#fffaf0] pb-10">
+    <View className="min-h-screen bg-gradient-to-br from-orange-50 via-[#fffaf0] to-orange-100 transition-all duration-500 pb-10">
       {/* Header */}
       <View className="bg-white px-4 pt-12 pb-4 sticky top-0 z-20 shadow-sm flex flex-row items-center">
         <View onClick={handleBack} className="p-2 -ml-2 text-gray-800">
@@ -59,19 +59,30 @@ export default function HealthTracking() {
             </View>
           </View>
           
-          <View className="w-full mt-4 bg-orange-50 rounded-2xl p-4 flex flex-col gap-2">
-            {activePet.weightRecords.length > 0 ? (
-              activePet.weightRecords.slice(-5).map((record: any, index: number) => (
-                <View key={index} className="flex flex-row justify-between items-center py-2 border-b border-orange-100 last:border-0">
-                  <Text className="text-gray-500">{record.date}</Text>
-                  <Text className="font-bold text-primary-600">{record.weight} kg</Text>
+          <View className="w-full mt-6 bg-[#fcfaf5] border border-gray-100 rounded-2xl p-5 shadow-inner min-h-[160px]">
+            <View className="flex flex-row flex-wrap justify-between gap-y-6">
+              {activePet.weightRecords.length > 0 ? (
+                activePet.weightRecords.slice(-6).map((record: any, index: number) => {
+                  const rotations = ['-rotate-3', 'rotate-2', '-rotate-2', 'rotate-3', '-rotate-1', 'rotate-1']
+                  const colors = ['bg-yellow-100', 'bg-blue-50', 'bg-pink-50', 'bg-green-50', 'bg-purple-50', 'bg-orange-50']
+                  
+                  return (
+                    <View 
+                      key={index} 
+                      className={`w-[47%] ${colors[index % colors.length]} transform ${rotations[index % rotations.length]} p-3 rounded-md shadow-soft relative flex flex-col items-center justify-center transition-transform hover:scale-105`}
+                    >
+                      <View className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-10 h-4 bg-white/60 shadow-sm"></View>
+                      <Text className="text-gray-500 text-xs mb-1 mt-2">{record.date}</Text>
+                      <Text className="font-bold text-gray-800 text-base">{record.weight} <Text className="text-xs font-normal">kg</Text></Text>
+                    </View>
+                  )
+                })
+              ) : (
+                <View className="w-full text-center py-8 text-gray-400">
+                  <Text>暂无体重记录，快来添加吧~</Text>
                 </View>
-              ))
-            ) : (
-              <View className="text-center py-6 text-gray-400">
-                <Text>暂无体重记录，快来添加吧~</Text>
-              </View>
-            )}
+              )}
+            </View>
           </View>
         </View>
 

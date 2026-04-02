@@ -34,10 +34,15 @@ module.exports = {
       fontFamily: {
         sans: ['"Nunito"', '"PingFang SC"', 'sans-serif'],
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
       boxShadow: {
         'cute': '0 10px 25px -5px rgba(255, 143, 10, 0.2), 0 8px 10px -6px rgba(255, 143, 10, 0.1)',
         'cute-green': '0 10px 25px -5px rgba(34, 197, 94, 0.2), 0 8px 10px -6px rgba(34, 197, 94, 0.1)',
         'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+        'cute-orange': '0 10px 25px -5px rgba(255, 143, 10, 0.2), 0 8px 10px -6px rgba(255, 143, 10, 0.1)',
+        'soft-blue': '0 10px 25px -5px rgba(59, 130, 246, 0.2), 0 8px 10px -6px rgba(59, 130, 246, 0.1)',
       },
       borderRadius: {
         '2xl': '1.5rem',
