@@ -54,8 +54,6 @@
     "@tarojs/shared": "4.1.11",
     "@tarojs/taro": "4.1.11",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.38.0",
-    "lucide-react": "^1.7.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "tailwind-merge": "^3.5.0",
