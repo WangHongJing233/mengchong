@@ -2,7 +2,7 @@
 export default {
   projectName: 'taro-app',
   date: '2023-12-10',
-  designWidth: 750,
+  designWidth: 375,
   deviceRatio: {
     640: 2.34 / 2,
     750: 1,

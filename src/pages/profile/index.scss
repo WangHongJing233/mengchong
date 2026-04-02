@@ -2,7 +2,7 @@
 
 .profile {
   min-height: 100vh;
-  padding-bottom: 5rem;
+  padding-bottom: 80px;
   background-color: #f7f8fa;
 
   // -- Login Section --
@@ -17,8 +17,8 @@
   }
 
   &__login-icon-wrapper {
-    width: 6rem;
-    height: 6rem;
+    width: 96px;
+    height: 96px;
     background-color: #ffedd5;
     border-radius: $border-radius-full;
     @include flex-center;
@@ -26,12 +26,12 @@
   }
 
   &__login-icon {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
+    font-size: 36px;
+    line-height: 40px;
   }
 
   &__login-title {
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 900;
     color: $color-gray-800;
     margin-bottom: $spacing-2;
@@ -45,11 +45,11 @@
 
   &__login-btn {
     width: 100%;
-    max-width: 20rem;
+    max-width: 320px;
     background-color: #10b981;
     color: $color-white;
     border-radius: $border-radius-full;
-    padding: 0.875rem 0;
+    padding: 14px 0;
     @include flex-center;
     gap: $spacing-2;
     box-shadow: 0 4px 14px 0 rgba(16, 185, 129, 0.39);
@@ -57,7 +57,7 @@
 
   &__login-btn-text {
     font-weight: bold;
-    font-size: 1.125rem;
+    font-size: 18px;
   }
 
   // -- Authenticated View --
@@ -65,9 +65,9 @@
   // Header
   &__header {
     background: linear-gradient(to bottom right, #fff7ed, $color-white);
-    padding: 4rem $spacing-6 2.5rem;
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    padding: 64px $spacing-6 40px;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     position: relative;
     overflow: hidden;
@@ -79,19 +79,19 @@
     filter: blur(24px);
     
     &--1 {
-      top: -2.5rem;
-      right: -2.5rem;
-      width: 10rem;
-      height: 10rem;
+      top: -40px;
+      right: -40px;
+      width: 160px;
+      height: 160px;
       background-color: rgba(255, 237, 213, 0.5);
       animation: float 3s ease-in-out infinite;
     }
 
     &--2 {
-      top: 5rem;
-      left: -2.5rem;
-      width: 8rem;
-      height: 8rem;
+      top: 80px;
+      left: -40px;
+      width: 128px;
+      height: 128px;
       background-color: rgba(254, 215, 170, 0.3);
       filter: blur(16px);
       animation: float 3s ease-in-out infinite;
@@ -101,13 +101,13 @@
 
   &__header-settings {
     position: absolute;
-    top: 3rem;
-    right: 1.5rem;
+    top: 48px;
+    right: 24px;
     color: $color-gray-400;
-    font-size: 1.25rem;
+    font-size: 20px;
     background-color: rgba(255, 255, 255, 0.5);
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 40px;
+    height: 40px;
     border-radius: $border-radius-full;
     @include flex-center;
     @include backdrop-blur(4px, rgba(255, 255, 255, 0.3));
@@ -119,7 +119,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1.25rem;
+    gap: 20px;
     position: relative;
     z-index: 10;
   }
@@ -129,8 +129,8 @@
   }
 
   &__avatar {
-    width: 5rem;
-    height: 5rem;
+    width: 80px;
+    height: 80px;
     border-radius: $border-radius-full;
     border: 4px solid $color-white;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
@@ -140,8 +140,8 @@
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 24px;
+    height: 24px;
     background-color: #4ade80;
     border: 2px solid $color-white;
     border-radius: $border-radius-full;
@@ -153,17 +153,17 @@
   }
 
   &__nickname {
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 800;
     color: $color-gray-800;
   }
 
   &__activity-badge {
-    font-size: 0.875rem;
+    font-size: 14px;
     color: #ea580c;
     margin-top: $spacing-2;
     background-color: rgba(255, 237, 213, 0.8);
-    padding: 0.25rem 0.75rem;
+    padding: 4px 12px;
     border-radius: $border-radius-full;
     display: inline-block;
     @include backdrop-blur(4px, rgba(255, 237, 213, 0.8));
@@ -173,8 +173,8 @@
 
   // Pets Section
   &__pets-section {
-    margin-top: 2rem;
-    padding: 0 1rem;
+    margin-top: 32px;
+    padding: 0 16px;
     animation: slide-up 0.5s ease-out forwards;
   }
 
@@ -183,43 +183,43 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-    padding: 0 0.5rem;
+    margin-bottom: 16px;
+    padding: 0 8px;
   }
 
   &__pets-title {
     font-weight: bold;
-    font-size: 1.125rem;
+    font-size: 18px;
     color: $color-gray-800;
   }
 
   &__pets-add-btn {
-    font-size: 0.875rem;
+    font-size: 14px;
     color: #f97316;
     font-weight: bold;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.25rem;
+    gap: 4px;
     background-color: #fff7ed;
-    padding: 0.25rem 0.75rem;
+    padding: 4px 12px;
     border-radius: $border-radius-full;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   }
 
   &__pets-scroll {
     white-space: nowrap;
-    padding-bottom: 1rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-bottom: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 
   &__pet-card {
     display: inline-block;
-    margin-right: 1rem;
+    margin-right: 16px;
     width: 140px;
-    border-radius: 2rem;
-    padding: 1.25rem;
+    border-radius: 32px;
+    padding: 20px;
     transition: all 0.3s ease;
     vertical-align: top;
     position: relative;
@@ -248,20 +248,20 @@
 
   &__pet-card-glow {
     position: absolute;
-    right: -1rem;
-    top: -1rem;
-    width: 5rem;
-    height: 5rem;
+    right: -16px;
+    top: -16px;
+    width: 80px;
+    height: 80px;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: $border-radius-full;
     filter: blur(12px);
   }
 
   &__pet-avatar {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 56px;
+    height: 56px;
     border-radius: $border-radius-full;
-    margin-bottom: 0.75rem;
+    margin-bottom: 12px;
     object-fit: cover;
     border: 2px solid #f3f4f6;
     position: relative;
@@ -276,14 +276,14 @@
 
   &__pet-name {
     font-weight: 800;
-    font-size: 1rem;
+    font-size: 16px;
     position: relative;
     z-index: 10;
   }
 
   &__pet-cuteness {
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
+    font-size: 12px;
+    margin-top: 4px;
     font-weight: 500;
     position: relative;
     z-index: 10;
@@ -296,11 +296,11 @@
 
   // Menus Section
   &__menus-section {
-    margin-top: 1.5rem;
-    padding: 0 1rem;
+    margin-top: 24px;
+    padding: 0 16px;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 16px;
     animation: slide-up 0.5s ease-out forwards;
     animation-delay: 0.1s;
     opacity: 0;
@@ -308,19 +308,19 @@
 
   &__menu-card {
     background-color: $color-white;
-    border-radius: 2rem;
-    padding: 0.5rem;
+    border-radius: 32px;
+    padding: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     border: 1px solid #f9fafb;
   }
 
   &__menu-item {
-    padding: 1rem;
+    padding: 16px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-radius: 1.5rem;
+    border-radius: 24px;
     transition: background-color 0.2s ease;
 
     &:active {
@@ -332,15 +332,15 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 1rem;
+    gap: 16px;
   }
 
   &__menu-icon-wrapper {
-    width: 3rem;
-    height: 3rem;
+    width: 48px;
+    height: 48px;
     border-radius: $border-radius-full;
     @include flex-center;
-    font-size: 1.25rem;
+    font-size: 20px;
     box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
 
     &--health {
@@ -363,12 +363,12 @@
   &__menu-title {
     font-weight: bold;
     color: $color-gray-800;
-    font-size: 1rem;
+    font-size: 16px;
   }
 
   &__menu-arrow {
-    width: 2rem;
-    height: 2rem;
+    width: 32px;
+    height: 32px;
     border-radius: $border-radius-full;
     background-color: #f9fafb;
     @include flex-center;

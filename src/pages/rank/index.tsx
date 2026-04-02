@@ -15,30 +15,26 @@ export default function Rank() {
   ].sort((a, b) => b.cuteness - a.cuteness)
 
   return (
-    <View className="min-h-screen pb-20 bg-[#fffaf0]">
+    <View className="rank">
       {/* Header */}
-      <View className="bg-primary-500 pt-12 pb-6 px-6 rounded-b-4xl relative overflow-hidden shadow-cute">
-        <View className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl"></View>
-        <View className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/20 rounded-full blur-2xl"></View>
+      <View className="rank__header">
+        <View className="rank__bg-blob rank__bg-blob--top-right"></View>
+        <View className="rank__bg-blob rank__bg-blob--bottom-left"></View>
         
-        <View className="text-2xl font-black text-white flex items-center gap-2 relative z-10">
+        <View className="rank__title">
           <Text>🏆 萌力排行榜</Text>
         </View>
         
         {/* Tabs */}
-        <View className="flex bg-primary-600/50 p-1 rounded-2xl mt-6 relative z-10 backdrop-blur-sm">
+        <View className="rank__tabs">
           <View 
-            className={`flex-1 py-2 rounded-xl text-sm font-bold flex items-center justify-center transition-colors ${
-              tab === 'national' ? "bg-white text-primary-600 shadow-sm" : "text-white/80"
-            }`}
+            className={`rank__tab ${tab === 'national' ? 'rank__tab--active' : ''}`}
             onClick={() => setTab('national')}
           >
             <Text>全国榜单</Text>
           </View>
           <View 
-            className={`flex-1 py-2 rounded-xl text-sm font-bold flex justify-center items-center gap-1 transition-colors ${
-              tab === 'city' ? "bg-white text-primary-600 shadow-sm" : "text-white/80"
-            }`}
+            className={`rank__tab ${tab === 'city' ? 'rank__tab--active' : ''}`}
             onClick={() => setTab('city')}
           >
             <Text>📍 同城榜单</Text>
@@ -47,36 +43,36 @@ export default function Rank() {
       </View>
 
       {/* List */}
-      <View className="px-4 mt-6 flex flex-col gap-3">
+      <View className="rank__list">
         {mockLeaderboard.map((pet, index) => (
           <View 
             key={pet.id} 
-            className="bg-white rounded-2xl p-4 flex flex-row items-center shadow-soft"
+            className="rank__item"
           >
             {/* Rank */}
-            <View className="w-8 flex justify-center mr-2">
-              {index === 0 && <Text className="text-2xl">🥇</Text>}
-              {index === 1 && <Text className="text-2xl">🥈</Text>}
-              {index === 2 && <Text className="text-2xl">🥉</Text>}
-              {index > 2 && <Text className="text-gray-400 font-bold text-lg">{index + 1}</Text>}
+            <View className="rank__item-rank">
+              {index === 0 && <Text className="rank__item-medal">🥇</Text>}
+              {index === 1 && <Text className="rank__item-medal">🥈</Text>}
+              {index === 2 && <Text className="rank__item-medal">🥉</Text>}
+              {index > 2 && <Text className="rank__item-number">{index + 1}</Text>}
             </View>
             
             {/* Avatar */}
             <Image 
               src={pet.avatar} 
-              className="w-14 h-14 rounded-full object-cover border-2 border-primary-50"
+              className="rank__item-avatar"
             />
             
             {/* Info */}
-            <View className="ml-4 flex-1">
-              <View className="font-bold text-gray-800 text-base"><Text>{pet.name}</Text></View>
-              <View className="flex flex-row items-center gap-1 mt-1 text-xs text-rose-500 font-bold bg-rose-50 px-2 py-0.5 rounded-md" style={{width: 'max-content'}}>
+            <View className="rank__item-info">
+              <View className="rank__item-name"><Text>{pet.name}</Text></View>
+              <View className="rank__item-cuteness">
                 <Text>❤️ {pet.cuteness} 萌力</Text>
               </View>
             </View>
             
             {/* Action */}
-            <View className="w-8 h-8 rounded-full bg-primary-50 text-primary-500 flex items-center justify-center">
+            <View className="rank__item-action">
               <Text>❤️</Text>
             </View>
           </View>
