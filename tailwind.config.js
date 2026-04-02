@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+module.exports = {
+  content: ["./public/index.html", "./src/**/*.{html,js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -51,4 +48,8 @@ export default {
     },
   },
   plugins: [],
+  corePlugins: {
+    // 小程序不需要 preflight，因为这主要是针对 h5 的，如果你要同时开发小程序和 h5 端，你应该使用环境变量来控制它
+    preflight: false
+  }
 }
