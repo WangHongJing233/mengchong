@@ -27,7 +27,7 @@ export default {
   },
   mini: {
     optimizeMainPackage: {
-      enable: true
+      enable: false
     },
     postcss: {
       pxtransform: {
