@@ -26,6 +26,8 @@ export default {
     enable: false
   },
   mini: {
+    enableSourceMap: false,
+    sourceMapType: 'none',
     optimizeMainPackage: {
       enable: false
     },
