@@ -2,7 +2,6 @@ import { View, Text, Image, Input, Button, Form } from '@tarojs/components'
 import { useState } from 'react'
 import Taro from '@tarojs/taro'
 import { useStore } from '../../store'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import './index.scss'
 
 export default function HealthTracking() {
@@ -60,39 +59,19 @@ export default function HealthTracking() {
             </View>
           </View>
           
-          <View className="h-[250px] w-full mt-4 -ml-4">
-            {/* Note: Recharts relies on DOM and might not work natively in mini-programs without a wrapper like ECharts-for-weixin. For H5 mode, it works. */}
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={activePet.weightRecords}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
-                <XAxis 
-                  dataKey="date" 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fontSize: 12, fill: '#9ca3af' }} 
-                  dy={10}
-                />
-                <YAxis 
-                  domain={['dataMin - 0.5', 'dataMax + 0.5']} 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fontSize: 12, fill: '#9ca3af' }}
-                  dx={-10}
-                />
-                <Tooltip 
-                  contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 20px -2px rgba(0,0,0,0.1)' }}
-                  itemStyle={{ color: '#ff8f0a', fontWeight: 'bold' }}
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="weight" 
-                  stroke="#ff8f0a" 
-                  strokeWidth={4}
-                  dot={{ r: 6, fill: '#fff', stroke: '#ff8f0a', strokeWidth: 3 }}
-                  activeDot={{ r: 8 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+          <View className="w-full mt-4 bg-orange-50 rounded-2xl p-4 flex flex-col gap-2">
+            {activePet.weightRecords.length > 0 ? (
+              activePet.weightRecords.slice(-5).map((record: any, index: number) => (
+                <View key={index} className="flex flex-row justify-between items-center py-2 border-b border-orange-100 last:border-0">
+                  <Text className="text-gray-500">{record.date}</Text>
+                  <Text className="font-bold text-primary-600">{record.weight} kg</Text>
+                </View>
+              ))
+            ) : (
+              <View className="text-center py-6 text-gray-400">
+                <Text>暂无体重记录，快来添加吧~</Text>
+              </View>
+            )}
           </View>
         </View>
 
