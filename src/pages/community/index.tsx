@@ -119,17 +119,17 @@ export default function Community() {
   }
 
   return (
-    <View className="min-h-screen pb-20 bg-[#f7f8fa] relative">
+    <View className="flex flex-col h-screen overflow-hidden bg-[#f7f8fa]">
       {/* Header */}
-      <View className="bg-white px-6 pt-12 pb-4 sticky top-0 z-20 shadow-sm">
+      <View className="bg-white px-6 pt-12 pb-4 shrink-0 z-20 shadow-sm">
         <View className="text-2xl font-black text-gray-800"><Text>萌宠社区</Text></View>
       </View>
 
       {/* Feed */}
-      <ScrollView scrollY className="p-4 h-full">
-        <View className="flex flex-col gap-6">
+      <ScrollView scrollY className="flex-1 h-0 p-4 pb-32">
+        <View className="flex flex-col">
           {posts.map((post) => (
-            <View key={post.id} className="bg-white rounded-[2rem] overflow-hidden shadow-soft border border-gray-50">
+            <View key={post.id} className="bg-white rounded-[24px] shadow-sm mb-6 border border-gray-100">
               {/* User Info */}
               <View className="p-5 flex flex-row items-center justify-between">
                 <View className="flex flex-row items-center gap-4">
@@ -145,36 +145,18 @@ export default function Community() {
               </View>
               
               {/* Content */}
-              <View className="px-5 pb-4 text-[15px] text-gray-700 leading-relaxed font-medium">
+              <View className="px-5 pb-3 text-[15px] text-gray-700 leading-relaxed font-medium">
                 <Text>{post.content}</Text>
               </View>
               
               {/* Image */}
-              <View className="w-full aspect-square bg-gray-50">
+              <View className="mx-5 mb-4 rounded-2xl overflow-hidden shadow-inner aspect-square bg-gray-50">
                 <Image src={post.image} className="w-full h-full object-cover" mode="aspectFill" />
               </View>
               
-              {/* Actions */}
-              <View className="p-5 flex flex-row items-center gap-8 border-b border-gray-50">
-                <View 
-                  className={`flex flex-row items-center gap-2 transition-colors active:scale-90 ${post.isLiked ? 'text-rose-500' : 'text-gray-500'}`}
-                  onClick={() => handleLike(post.id)}
-                >
-                  <Text className="text-xl">{post.isLiked ? '❤️' : '🤍'}</Text>
-                  <Text className="text-sm font-bold">{post.likes}</Text>
-                </View>
-                <View 
-                  className="flex flex-row items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors active:scale-90"
-                  onClick={() => setActiveCommentPostId(activeCommentPostId === post.id ? null : post.id)}
-                >
-                  <Text className="text-xl">💬</Text>
-                  <Text className="text-sm font-bold">{post.comments.length}</Text>
-                </View>
-              </View>
-
               {/* Comments Section */}
               {post.comments.length > 0 && (
-                <View className="px-5 py-4 bg-gray-50/50">
+                <View className="mx-5 mb-5 p-4 bg-gray-50/80 rounded-2xl">
                   {post.comments.map(comment => (
                     <View key={comment.id} className="mb-2 last:mb-0 flex flex-row items-start gap-2">
                       <Text className="font-extrabold text-gray-800 text-[14px] shrink-0">{comment.user}: </Text>
@@ -186,7 +168,7 @@ export default function Community() {
 
               {/* Comment Input */}
               {activeCommentPostId === post.id && (
-                <View className="p-4 flex flex-row items-center gap-3 bg-white border-t border-gray-100">
+                <View className="mx-5 mb-5 p-4 flex flex-row items-center gap-3 bg-white rounded-2xl shadow-sm border border-gray-100">
                   <Input 
                     value={commentText}
                     onInput={(e) => setCommentText(e.detail.value)}
@@ -203,6 +185,25 @@ export default function Community() {
                   </View>
                 </View>
               )}
+
+              {/* Actions */}
+              <View className="px-5 py-4 border-t border-gray-50 flex flex-row items-center gap-8">
+                <View 
+                  className={`flex flex-row items-center gap-2 transition-colors active:scale-90 ${post.isLiked ? 'text-rose-500' : 'text-gray-500'}`}
+                  onClick={() => handleLike(post.id)}
+                >
+                  <Text className="text-xl">{post.isLiked ? '❤️' : '🤍'}</Text>
+                  <Text className="text-sm font-bold">{post.likes}</Text>
+                </View>
+                <View 
+                  className="flex flex-row items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors active:scale-90"
+                  onClick={() => setActiveCommentPostId(activeCommentPostId === post.id ? null : post.id)}
+                >
+                  <Text className="text-xl">💬</Text>
+                  <Text className="text-sm font-bold">{post.comments.length}</Text>
+                </View>
+              </View>
+
             </View>
           ))}
         </View>
