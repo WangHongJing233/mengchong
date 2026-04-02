@@ -30,27 +30,27 @@ export default function Profile() {
   }
 
   return (
-    <View className="min-h-screen pb-20 bg-gray-50">
+    <View className="min-h-screen pb-20 bg-[#f7f8fa]">
       {/* User Header */}
-      <View className="bg-white pt-16 pb-8 px-6 rounded-b-4xl shadow-soft relative">
-        <View className="absolute top-12 right-6 text-gray-400">
+      <View className="bg-white pt-16 pb-10 px-6 rounded-b-[2rem] shadow-sm relative">
+        <View className="absolute top-12 right-6 text-gray-400 text-xl">
           <Text>⚙️</Text>
         </View>
         
-        <View className="flex flex-row items-center gap-4">
-          <Image src={user.avatar} className="w-16 h-16 rounded-full border-2 border-primary-100" />
+        <View className="flex flex-row items-center gap-5">
+          <Image src={user.avatar} className="w-20 h-20 rounded-full border-4 border-primary-50 shadow-sm" />
           <View>
-            <View className="text-xl font-black text-gray-800"><Text>{user.nickname}</Text></View>
-            <View className="text-sm text-gray-500 mt-1"><Text>已在社区活跃 128 天</Text></View>
+            <View className="text-2xl font-extrabold text-gray-800"><Text>{user.nickname}</Text></View>
+            <View className="text-sm text-gray-500 mt-2 bg-gray-50 px-3 py-1 rounded-full inline-block"><Text>已在社区活跃 128 天</Text></View>
           </View>
         </View>
       </View>
 
       {/* Pet Profiles */}
-      <View className="mt-6 px-4">
-        <View className="flex flex-row justify-between items-center mb-3 px-2">
-          <View className="font-bold text-gray-800"><Text>我的宠物</Text></View>
-          <View className="text-sm text-primary-500 font-bold flex flex-row items-center gap-1">
+      <View className="mt-8 px-4">
+        <View className="flex flex-row justify-between items-center mb-4 px-2">
+          <View className="font-bold text-lg text-gray-800"><Text>我的宠物</Text></View>
+          <View className="text-sm text-primary-500 font-bold flex flex-row items-center gap-1 bg-primary-50 px-3 py-1 rounded-full">
             <Text>+ 添加</Text>
           </View>
         </View>
@@ -60,15 +60,15 @@ export default function Profile() {
             <View 
               key={pet.id} 
               onClick={() => Taro.navigateTo({ url: `/pages/pet-detail/index?id=${pet.id}` })}
-              className={`inline-block mr-4 w-[140px] rounded-3xl p-4 transition-all align-top active:scale-95 ${
+              className={`inline-block mr-4 w-[140px] rounded-3xl p-5 transition-all align-top active:scale-95 ${
                 pet.id === activePetId 
-                  ? 'bg-primary-500 text-white shadow-cute scale-105' 
-                  : 'bg-white text-gray-800 shadow-soft'
+                  ? 'bg-gradient-to-br from-primary-400 to-primary-500 text-white shadow-cute scale-105 border border-primary-300' 
+                  : 'bg-white text-gray-800 shadow-soft border border-gray-50'
               }`}
             >
-              <Image src={pet.avatar} className="w-12 h-12 rounded-full mb-3 object-cover border-2 border-white/20" mode="aspectFill" />
-              <View className="font-bold"><Text>{pet.name}</Text></View>
-              <View className={`text-xs mt-1 ${pet.id === activePetId ? 'text-primary-100' : 'text-gray-500'}`}>
+              <Image src={pet.avatar} className={`w-14 h-14 rounded-full mb-3 object-cover border-2 ${pet.id === activePetId ? 'border-white/30' : 'border-gray-100'}`} mode="aspectFill" />
+              <View className="font-extrabold text-base"><Text>{pet.name}</Text></View>
+              <View className={`text-xs mt-1 font-medium ${pet.id === activePetId ? 'text-primary-100' : 'text-gray-500'}`}>
                 <Text>萌力 {pet.cuteness}</Text>
               </View>
             </View>
@@ -77,29 +77,34 @@ export default function Profile() {
       </View>
 
       {/* Menus */}
-      <View className="mt-4 px-4 flex flex-col gap-3">
-        <View 
-          onClick={navigateToHealth} 
-          className="bg-white p-4 rounded-2xl flex flex-row items-center justify-between shadow-soft active:scale-95 transition-transform"
-        >
-          <View className="flex flex-row items-center gap-3">
-            <View className="w-10 h-10 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center">
-              <Text>📈</Text>
+      <View className="mt-6 px-4 flex flex-col gap-4">
+        <View className="bg-white rounded-3xl p-2 shadow-soft border border-gray-50">
+          <View 
+            onClick={navigateToHealth} 
+            className="p-4 flex flex-row items-center justify-between active:bg-gray-50 rounded-2xl transition-colors"
+          >
+            <View className="flex flex-row items-center gap-4">
+              <View className="w-12 h-12 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center text-xl">
+                <Text>📈</Text>
+              </View>
+              <View className="font-bold text-gray-800 text-base"><Text>健康体重追踪</Text></View>
             </View>
-            <View className="font-bold text-gray-800"><Text>健康体重追踪</Text></View>
+            <View className="text-gray-300 font-bold"><Text>{'>'}</Text></View>
           </View>
-          <View className="text-gray-300"><Text>{'>'}</Text></View>
         </View>
         
-        <View 
-          onClick={logout}
-          className="bg-white p-4 rounded-2xl flex flex-row items-center justify-between shadow-soft active:scale-95 transition-transform mt-8"
-        >
-          <View className="flex flex-row items-center gap-3">
-            <View className="w-10 h-10 rounded-full bg-red-50 text-red-500 flex items-center justify-center">
-              <Text>🚪</Text>
+        <View className="bg-white rounded-3xl p-2 shadow-soft border border-gray-50 mt-4">
+          <View 
+            onClick={logout}
+            className="p-4 flex flex-row items-center justify-between active:bg-gray-50 rounded-2xl transition-colors"
+          >
+            <View className="flex flex-row items-center gap-4">
+              <View className="w-12 h-12 rounded-full bg-red-50 text-red-500 flex items-center justify-center text-xl">
+                <Text>🚪</Text>
+              </View>
+              <View className="font-bold text-gray-800 text-base"><Text>退出登录</Text></View>
             </View>
-            <View className="font-bold text-gray-800"><Text>退出登录</Text></View>
+            <View className="text-gray-300 font-bold"><Text>{'>'}</Text></View>
           </View>
         </View>
       </View>

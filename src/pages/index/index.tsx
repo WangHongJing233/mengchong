@@ -34,36 +34,36 @@ export default function Index() {
   }
 
   return (
-    <View className="min-h-screen pb-20 relative bg-gradient-to-b from-primary-50 to-[#fffaf0]">
+    <View className="min-h-screen pb-20 relative bg-[#f7f8fa]">
       {/* Header Stats */}
-      <View className="px-6 pt-6 pb-6 flex justify-between items-center relative z-10">
+      <View className="px-6 pt-12 pb-6 flex justify-between items-center relative z-10 bg-white shadow-sm rounded-b-[2rem]">
         <View>
-          <View className="text-2xl font-extrabold text-primary-900 flex items-center gap-2">
+          <View className="text-2xl font-extrabold text-gray-800 flex items-center gap-2">
             <Text>{activePet.name}</Text>
-            <View className="bg-primary-100 text-primary-600 text-xs px-2 py-1 rounded-full font-bold">
+            <View className="bg-primary-100 text-primary-600 text-xs px-2.5 py-1 rounded-full font-bold">
               <Text>Lv. 5</Text>
             </View>
           </View>
-          <View className="text-sm text-primary-600 mt-1 font-medium"><Text>今天也要开心哦喵~</Text></View>
+          <View className="text-sm text-gray-500 mt-1 font-medium"><Text>今天也要开心哦喵~</Text></View>
         </View>
         <View className="flex gap-3">
-          <View className="bg-white/60 backdrop-blur rounded-2xl p-2 shadow-sm flex flex-col items-center min-w-[60px]">
-            <Text className="text-xs font-bold text-gray-700 mt-1">萌力 {activePet.cuteness}</Text>
+          <View className="bg-orange-50 rounded-2xl p-2 shadow-sm flex flex-col items-center min-w-[60px] border border-orange-100">
+            <Text className="text-xs font-bold text-primary-600 mt-1">萌力 {activePet.cuteness}</Text>
           </View>
-          <View className="bg-white/60 backdrop-blur rounded-2xl p-2 shadow-sm flex flex-col items-center min-w-[60px]">
-            <Text className="text-xs font-bold text-gray-700 mt-1">颜值 {activePet.appearanceScore}</Text>
+          <View className="bg-blue-50 rounded-2xl p-2 shadow-sm flex flex-col items-center min-w-[60px] border border-blue-100">
+            <Text className="text-xs font-bold text-blue-600 mt-1">颜值 {activePet.appearanceScore}</Text>
           </View>
         </View>
       </View>
 
       {/* Pet Display Area */}
-      <View className="relative w-full h-[380px] flex items-center justify-center mt-4">
-        <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-200 rounded-full blur-3xl opacity-50 animate-pulse"></View>
-        <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-secondary-200 rounded-full blur-2xl opacity-40"></View>
+      <View className="relative w-full h-[380px] flex items-center justify-center mt-6">
+        <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary-100 rounded-full blur-3xl opacity-50 animate-pulse"></View>
+        <View className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-100 rounded-full blur-2xl opacity-40"></View>
         
         <View className="relative z-10 animate-bounce-subtle">
-          <View className="w-56 h-56 rounded-full p-2 bg-white shadow-cute relative">
-            <View className="w-full h-full rounded-full overflow-hidden border-4 border-primary-50">
+          <View className="w-60 h-60 rounded-full p-2 bg-white shadow-cute relative">
+            <View className="w-full h-full rounded-full overflow-hidden border-4 border-gray-50">
               <Image 
                 src={activePet.avatar} 
                 className="w-full h-full object-cover"
@@ -81,34 +81,34 @@ export default function Index() {
       </View>
 
       {/* Action Buttons */}
-      <View className="px-6 -mt-8 relative z-20">
-        <View className="bg-white rounded-3xl p-6 shadow-soft flex justify-between">
+      <View className="px-6 -mt-4 relative z-20">
+        <View className="bg-white rounded-3xl p-6 shadow-soft flex justify-around">
           <View 
             onClick={() => handleInteraction('checkIn')}
-            className="flex flex-col items-center gap-2 group active:scale-95 transition-transform"
+            className="flex flex-col items-center gap-3 group active:scale-95 transition-transform"
           >
-            <View className="w-14 h-14 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center">
+            <View className="w-16 h-16 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center shadow-inner text-2xl">
               🐾
             </View>
-            <Text className="text-sm font-bold text-gray-600">日常打卡</Text>
+            <Text className="text-sm font-bold text-gray-700">日常打卡</Text>
           </View>
           <View 
             onClick={() => handleInteraction('play')}
-            className="flex flex-col items-center gap-2 group active:scale-95 transition-transform"
+            className="flex flex-col items-center gap-3 group active:scale-95 transition-transform"
           >
-            <View className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center">
+            <View className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-500 flex items-center justify-center shadow-inner text-2xl">
               🎾
             </View>
-            <Text className="text-sm font-bold text-gray-600">互动玩耍</Text>
+            <Text className="text-sm font-bold text-gray-700">互动玩耍</Text>
           </View>
           <View 
             onClick={handlePK}
-            className="flex flex-col items-center gap-2 group active:scale-95 transition-transform"
+            className="flex flex-col items-center gap-3 group active:scale-95 transition-transform"
           >
-            <View className="w-14 h-14 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center">
+            <View className="w-16 h-16 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center shadow-inner text-2xl">
               ⚔️
             </View>
-            <Text className="text-sm font-bold text-gray-600">匹配PK</Text>
+            <Text className="text-sm font-bold text-gray-700">匹配PK</Text>
           </View>
         </View>
       </View>
@@ -117,7 +117,7 @@ export default function Index() {
       <View className="px-6 mt-8">
         <View 
           onClick={handlePK}
-          className="w-full bg-gradient-to-r from-primary-400 to-primary-600 text-white rounded-3xl py-4 font-black text-lg shadow-cute flex items-center justify-center gap-2 active:scale-95 transition-transform"
+          className="w-full bg-gradient-to-r from-primary-400 to-primary-600 text-white rounded-full py-4.5 font-black text-lg shadow-cute flex items-center justify-center gap-2 active:scale-95 transition-transform"
         >
           <Text>✨ 开启萌宠对决 ✨</Text>
         </View>
