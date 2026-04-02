@@ -55,7 +55,7 @@ export default function HealthTracking() {
               </View>
             </View>
             <View className="text-2xl font-black text-primary-500">
-              <Text>{activePet.weightRecords[activePet.weightRecords.length - 1]?.weight || '--'}</Text>
+              <Text>{(activePet.weightRecords.length > 0 && activePet.weightRecords[activePet.weightRecords.length - 1].weight) ? activePet.weightRecords[activePet.weightRecords.length - 1].weight : '--'}</Text>
             </View>
           </View>
           
