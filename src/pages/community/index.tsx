@@ -1,7 +1,27 @@
-import { View, Text, Image } from '@tarojs/components'
+import { View, Text, Image, Input, ScrollView } from '@tarojs/components'
+import { useState } from 'react'
+import Taro from '@tarojs/taro'
 import './index.scss'
 
-const mockPosts = [
+interface Comment {
+  id: number;
+  user: string;
+  content: string;
+}
+
+interface Post {
+  id: number;
+  author: string;
+  authorAvatar: string;
+  image: string;
+  content: string;
+  likes: number;
+  isLiked: boolean;
+  comments: Comment[];
+  time: string;
+}
+
+const initialMockPosts: Post[] = [
   {
     id: 1,
     author: '布丁的铲屎官',
@@ -9,7 +29,11 @@ const mockPosts = [
     image: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=400',
     content: '今天去公园玩啦，开心！大家看看我的小可爱是不是又长胖了点~ 🐶',
     likes: 128,
-    comments: 24,
+    isLiked: false,
+    comments: [
+      { id: 101, user: '喵星人', content: '太可爱了吧！' },
+      { id: 102, user: '铲屎官小李', content: '这是什么品种呀？' }
+    ],
     time: '2小时前'
   },
   {
@@ -19,7 +43,10 @@ const mockPosts = [
     image: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400',
     content: '新买的猫爬架到了，主子好像很满意的样子，一天都没下来过 🐱',
     likes: 356,
-    comments: 42,
+    isLiked: true,
+    comments: [
+      { id: 201, user: '吸猫狂魔', content: '求链接！' }
+    ],
     time: '5小时前'
   },
   {
@@ -29,52 +56,157 @@ const mockPosts = [
     image: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?w=400',
     content: '短腿的悲哀就是...够不到桌子上的零食 😭',
     likes: 89,
-    comments: 12,
+    isLiked: false,
+    comments: [],
+    time: '昨天'
+  },
+  {
+    id: 4,
+    author: '大橘为重',
+    authorAvatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100',
+    image: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=400',
+    content: '橘猫的日常：除了吃就是睡 💤',
+    likes: 210,
+    isLiked: false,
+    comments: [
+      { id: 401, user: '猫奴', content: '十个橘猫九个胖！' }
+    ],
     time: '昨天'
   }
 ]
 
 export default function Community() {
+  const [posts, setPosts] = useState<Post[]>(initialMockPosts)
+  const [activeCommentPostId, setActiveCommentPostId] = useState<number | null>(null)
+  const [commentText, setCommentText] = useState('')
+
+  const handleLike = (postId: number) => {
+    setPosts(posts.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          isLiked: !post.isLiked,
+          likes: post.isLiked ? post.likes - 1 : post.likes + 1
+        }
+      }
+      return post
+    }))
+  }
+
+  const handleAddComment = (postId: number) => {
+    if (!commentText.trim()) return
+
+    setPosts(posts.map(post => {
+      if (post.id === postId) {
+        return {
+          ...post,
+          comments: [
+            ...post.comments,
+            { id: Date.now(), user: '我', content: commentText.trim() }
+          ]
+        }
+      }
+      return post
+    }))
+    setCommentText('')
+    setActiveCommentPostId(null)
+    
+    Taro.showToast({
+      title: '评论成功',
+      icon: 'success',
+      duration: 1500
+    })
+  }
+
   return (
-    <View className="min-h-screen pb-20 bg-gray-50">
+    <View className="min-h-screen pb-20 bg-gray-50 relative">
       {/* Header */}
       <View className="bg-white px-6 pt-12 pb-4 sticky top-0 z-20 shadow-sm">
         <View className="text-2xl font-black text-gray-800"><Text>萌宠社区</Text></View>
       </View>
 
       {/* Feed */}
-      <View className="p-4 flex flex-col gap-4">
-        {mockPosts.map((post) => (
-          <View key={post.id} className="bg-white rounded-3xl overflow-hidden shadow-soft">
-            <View className="p-4 flex flex-row items-center gap-3">
-              <Image src={post.authorAvatar} className="w-10 h-10 rounded-full" />
-              <View>
-                <View className="font-bold text-sm text-gray-800"><Text>{post.author}</Text></View>
-                <View className="text-xs text-gray-400"><Text>{post.time}</Text></View>
+      <ScrollView scrollY className="p-4 h-full">
+        <View className="flex flex-col gap-6">
+          {posts.map((post) => (
+            <View key={post.id} className="bg-white rounded-3xl overflow-hidden shadow-soft">
+              {/* User Info */}
+              <View className="p-4 flex flex-row items-center justify-between">
+                <View className="flex flex-row items-center gap-3">
+                  <Image src={post.authorAvatar} className="w-10 h-10 rounded-full" />
+                  <View>
+                    <View className="font-bold text-sm text-gray-800"><Text>{post.author}</Text></View>
+                    <View className="text-xs text-gray-400"><Text>{post.time}</Text></View>
+                  </View>
+                </View>
+                <View className="text-gray-400">
+                  <Text>•••</Text>
+                </View>
               </View>
-            </View>
-            
-            <View className="px-4 pb-3 text-sm text-gray-700 leading-relaxed">
-              <Text>{post.content}</Text>
-            </View>
-            
-            <View className="w-full aspect-square bg-gray-100">
-              <Image src={post.image} className="w-full h-full object-cover" mode="aspectFill" />
-            </View>
-            
-            <View className="p-4 flex flex-row items-center gap-6">
-              <View className="flex flex-row items-center gap-1.5 text-gray-500 hover:text-rose-500 transition-colors">
-                <Text>❤️</Text>
-                <Text className="text-sm font-medium">{post.likes}</Text>
+              
+              {/* Content */}
+              <View className="px-4 pb-3 text-sm text-gray-700 leading-relaxed">
+                <Text>{post.content}</Text>
               </View>
-              <View className="flex flex-row items-center gap-1.5 text-gray-500 hover:text-blue-500 transition-colors">
-                <Text>💬</Text>
-                <Text className="text-sm font-medium">{post.comments}</Text>
+              
+              {/* Image */}
+              <View className="w-full aspect-square bg-gray-100">
+                <Image src={post.image} className="w-full h-full object-cover" mode="aspectFill" />
               </View>
+              
+              {/* Actions */}
+              <View className="p-4 flex flex-row items-center gap-6 border-b border-gray-50">
+                <View 
+                  className={`flex flex-row items-center gap-1.5 transition-colors ${post.isLiked ? 'text-rose-500' : 'text-gray-500'}`}
+                  onClick={() => handleLike(post.id)}
+                >
+                  <Text className="text-lg">{post.isLiked ? '❤️' : '🤍'}</Text>
+                  <Text className="text-sm font-medium">{post.likes}</Text>
+                </View>
+                <View 
+                  className="flex flex-row items-center gap-1.5 text-gray-500 hover:text-blue-500 transition-colors"
+                  onClick={() => setActiveCommentPostId(activeCommentPostId === post.id ? null : post.id)}
+                >
+                  <Text className="text-lg">💬</Text>
+                  <Text className="text-sm font-medium">{post.comments.length}</Text>
+                </View>
+              </View>
+
+              {/* Comments Section */}
+              {post.comments.length > 0 && (
+                <View className="px-4 py-3 bg-gray-50">
+                  {post.comments.map(comment => (
+                    <View key={comment.id} className="mb-1 last:mb-0">
+                      <Text className="font-bold text-gray-800 text-sm">{comment.user}: </Text>
+                      <Text className="text-gray-600 text-sm">{comment.content}</Text>
+                    </View>
+                  ))}
+                </View>
+              )}
+
+              {/* Comment Input */}
+              {activeCommentPostId === post.id && (
+                <View className="p-4 flex flex-row items-center gap-3 bg-white border-t border-gray-100">
+                  <Input 
+                    value={commentText}
+                    onInput={(e) => setCommentText(e.detail.value)}
+                    placeholder="说点什么吧..."
+                    className="flex-1 bg-gray-100 px-4 py-2 rounded-full text-sm"
+                    confirmType="send"
+                    onConfirm={() => handleAddComment(post.id)}
+                  />
+                  <View 
+                    onClick={() => handleAddComment(post.id)}
+                    className="text-primary-500 font-bold text-sm px-2"
+                  >
+                    发送
+                  </View>
+                </View>
+              )}
             </View>
-          </View>
-        ))}
-      </View>
+          ))}
+        </View>
+      </ScrollView>
       
       {/* FAB */}
       <View className="fixed bottom-24 right-6 w-14 h-14 bg-primary-500 text-white rounded-full shadow-cute flex items-center justify-center active:scale-95 transition-transform z-50">

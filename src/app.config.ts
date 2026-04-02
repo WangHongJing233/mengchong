@@ -4,7 +4,8 @@ export default defineAppConfig({
     'pages/rank/index',
     'pages/community/index',
     'pages/profile/index',
-    'pages/health/index'
+    'pages/health/index',
+    'pages/pet-detail/index'
   ],
   window: {
     backgroundTextStyle: 'light',

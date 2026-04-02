@@ -25,6 +25,7 @@ interface AppState {
   login: () => void;
   logout: () => void;
   addPet: (pet: Pet) => void;
+  setActivePet: (id: string) => void;
   checkIn: () => void;
   addWeightRecord: (petId: string, record: { date: string; weight: number }) => void;
   playWithPet: () => void;
@@ -60,6 +61,33 @@ const mockPets: Pet[] = [
       { date: '03-15', weight: 3.3 },
       { date: '03-29', weight: 3.5 },
     ],
+  },
+  {
+    id: '3',
+    name: '奥利奥',
+    type: 'cat',
+    avatar: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=200&auto=format&fit=crop',
+    cuteness: 1100,
+    appearanceScore: 88,
+    activityScore: 75,
+    weightRecords: [
+      { date: '03-05', weight: 4.1 },
+      { date: '03-20', weight: 4.2 },
+    ],
+  },
+  {
+    id: '4',
+    name: '旺财',
+    type: 'dog',
+    avatar: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=200&auto=format&fit=crop',
+    cuteness: 950,
+    appearanceScore: 85,
+    activityScore: 95,
+    weightRecords: [
+      { date: '02-15', weight: 12.5 },
+      { date: '03-10', weight: 12.8 },
+      { date: '03-30', weight: 13.0 },
+    ],
   }
 ];
 
@@ -83,6 +111,8 @@ export const useStore = create<AppState>((set) => ({
     pets: [...state.pets, pet],
     activePetId: state.activePetId || pet.id
   })),
+
+  setActivePet: (id) => set({ activePetId: id }),
   
   checkIn: () => set((state) => {
     if (!state.activePetId) return state;

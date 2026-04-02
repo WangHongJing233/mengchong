@@ -59,7 +59,8 @@ export default function Profile() {
           {pets.map(pet => (
             <View 
               key={pet.id} 
-              className={`inline-block mr-4 w-[140px] rounded-3xl p-4 transition-all align-top ${
+              onClick={() => Taro.navigateTo({ url: `/pages/pet-detail/index?id=${pet.id}` })}
+              className={`inline-block mr-4 w-[140px] rounded-3xl p-4 transition-all align-top active:scale-95 ${
                 pet.id === activePetId 
                   ? 'bg-primary-500 text-white shadow-cute scale-105' 
                   : 'bg-white text-gray-800 shadow-soft'
