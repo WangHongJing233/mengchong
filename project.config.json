@@ -2,7 +2,7 @@
   "miniprogramRoot": "./dist",
   "projectname": "taro-app",
   "description": "萌宠PK",
-  "appid": "touristappid",
+  "appid": "wx067f329b08d70fff",
   "setting": {
     "urlCheck": true,
     "es6": false,
