@@ -29,7 +29,7 @@ export default {
     enableSourceMap: false,
     sourceMapType: 'none',
     optimizeMainPackage: {
-      enable: false
+      enable: true
     },
     postcss: {
       pxtransform: {
