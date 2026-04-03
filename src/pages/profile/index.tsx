@@ -65,22 +65,24 @@ export default function Profile() {
         </View>
         
         <ScrollView scrollX className="profile__pets-scroll" style={{ width: '100%' }}>
-          {pets.map(pet => (
-            <View 
-              key={pet.id} 
-              onClick={() => Taro.navigateTo({ url: `/pages/pet-detail/index?id=${pet.id}` })}
-              className={`profile__pet-card ${pet.id === activePetId ? 'profile__pet-card--active' : ''}`}
-            >
-              {pet.id === activePetId && (
-                <View className="profile__pet-card-glow"></View>
-              )}
-              <Image src={pet.avatar} className={`profile__pet-avatar ${pet.id === activePetId ? 'profile__pet-avatar--active' : ''}`} mode="aspectFill" />
-              <View className="profile__pet-name"><Text>{pet.name}</Text></View>
-              <View className={`profile__pet-cuteness ${pet.id === activePetId ? 'profile__pet-cuteness--active' : ''}`}>
-                <Text>萌力 {pet.cuteness}</Text>
+          <View className="profile__pets-scroll-inner">
+            {pets.map(pet => (
+              <View 
+                key={pet.id} 
+                onClick={() => Taro.navigateTo({ url: `/pages/pet-detail/index?id=${pet.id}` })}
+                className={`profile__pet-card ${pet.id === activePetId ? 'profile__pet-card--active' : ''}`}
+              >
+                {pet.id === activePetId && (
+                  <View className="profile__pet-card-glow"></View>
+                )}
+                <Image src={pet.avatar} className={`profile__pet-avatar ${pet.id === activePetId ? 'profile__pet-avatar--active' : ''}`} mode="aspectFill" />
+                <View className="profile__pet-name"><Text>{pet.name}</Text></View>
+                <View className={`profile__pet-cuteness ${pet.id === activePetId ? 'profile__pet-cuteness--active' : ''}`}>
+                  <Text>萌力 {pet.cuteness}</Text>
+                </View>
               </View>
-            </View>
-          ))}
+            ))}
+          </View>
         </ScrollView>
       </View>
 

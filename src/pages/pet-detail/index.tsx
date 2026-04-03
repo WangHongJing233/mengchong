@@ -42,7 +42,7 @@ export default function PetDetail() {
       </View>
 
       <ScrollView scrollY className="pet-detail__scroll">
-        <View className="pet-detail__content">
+        <View className="pet-detail__scroll-inner">
           {/* Main Card */}
           <View className="pet-card pet-card--main">
             <View className="pet-card__deco pet-card__deco--top"></View>

@@ -46,9 +46,10 @@
 
   &__scroll {
     height: 100%;
+    padding: 0; // Prevent webview bug
   }
 
-  &__content {
+  &__scroll-inner {
     padding: 24px;
   }
 }
