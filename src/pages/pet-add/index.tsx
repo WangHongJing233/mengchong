@@ -31,19 +31,6 @@ export default function PetAdd() {
 
   return (
     <View className="pet-add-page">
-      {/* Header */}
-      <View className="pet-add-page__header">
-        <View onClick={handleBack} className="pet-add-page__back-btn">
-          <Text>⬅️</Text>
-        </View>
-        <View className="pet-add-page__title">
-          <Text>添加宠物</Text>
-        </View>
-        <View className="pet-add-page__save-btn" onClick={handleSave}>
-          <Text>保存</Text>
-        </View>
-      </View>
-
       <View className="pet-add-page__content">
         {/* Avatar Upload */}
         <View className="pet-add-page__avatar-section">

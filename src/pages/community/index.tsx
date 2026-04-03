@@ -217,7 +217,10 @@ export default function Community() {
       </ScrollView>
       
       {/* FAB */}
-      <View className="community-page__fab">
+      <View 
+        className="community-page__fab"
+        onClick={() => Taro.navigateTo({ url: '/pages/post-add/index' })}
+      >
         <Text className="community-page__fab-icon">+</Text>
       </View>
     </View>

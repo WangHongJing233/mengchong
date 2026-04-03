@@ -43,16 +43,6 @@ export default function Messages() {
 
   return (
     <View className="messages-page">
-      {/* Header */}
-      <View className="messages-page__header">
-        <View onClick={handleBack} className="messages-page__back-btn">
-          <Text>⬅️</Text>
-        </View>
-        <View className="messages-page__title">
-          <Text>消息通知</Text>
-        </View>
-      </View>
-
       <ScrollView scrollY className="messages-page__scroll">
         <View className="messages-page__list">
           {mockMessages.map(msg => (

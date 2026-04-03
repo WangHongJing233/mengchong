@@ -7,7 +7,8 @@ export default defineAppConfig({
     'pages/health/index',
     'pages/pet-detail/index',
     'pages/messages/index',
-    'pages/pet-add/index'
+    'pages/pet-add/index',
+    'pages/post-add/index'
   ],
   window: {
     backgroundTextStyle: 'light',

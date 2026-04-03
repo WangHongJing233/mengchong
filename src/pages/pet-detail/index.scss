@@ -17,33 +17,6 @@
     }
   }
 
-  &__header {
-    background-color: $color-white;
-    padding: 48px 16px 16px;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  &__back-btn {
-    padding: 8px;
-    margin-left: -8px;
-    color: $color-gray-800;
-  }
-
-  &__title {
-    font-size: 18px;
-    font-weight: 700;
-    color: $color-gray-800;
-    flex: 1;
-    text-align: center;
-    padding-right: 32px;
-  }
-
   &__scroll {
     height: 100%;
     padding: 0; // Prevent webview bug

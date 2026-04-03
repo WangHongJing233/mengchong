@@ -31,16 +31,6 @@ export default function PetDetail() {
 
   return (
     <View className="pet-detail">
-      {/* Header */}
-      <View className="pet-detail__header">
-        <View onClick={handleBack} className="pet-detail__back-btn">
-          <Text>⬅️</Text>
-        </View>
-        <View className="pet-detail__title">
-          <Text>宠物档案</Text>
-        </View>
-      </View>
-
       <ScrollView scrollY className="pet-detail__scroll">
         <View className="pet-detail__scroll-inner">
           {/* Main Card */}
