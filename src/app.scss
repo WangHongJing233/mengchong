@@ -3,7 +3,16 @@
 /* ==========================================================================
    Global Styles
    ========================================================================== */
-*, *::before, *::after {
+page, view, scroll-view, swiper, movable-area, cover-view, text, icon, rich-text,
+progress, button, checkbox, form, input, label, picker, picker-view, radio, slider,
+switch, textarea, navigator, audio, image, video, map, canvas {
+  box-sizing: border-box;
+}
+
+view::before, view::after,
+text::before, text::after,
+image::before, image::after,
+button::before, button::after {
   box-sizing: border-box;
 }
 
