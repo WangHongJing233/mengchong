@@ -123,6 +123,13 @@ export default function Community() {
       {/* Header */}
       <View className="community-page__header">
         <View className="community-page__title"><Text>萌宠社区</Text></View>
+        <View 
+          className="community-page__messages-btn"
+          onClick={() => Taro.navigateTo({ url: '/pages/messages/index' })}
+        >
+          <Text>🔔</Text>
+          <View className="community-page__messages-badge"></View>
+        </View>
       </View>
 
       {/* Feed */}

@@ -59,7 +59,10 @@ export default function Profile() {
       <View className="profile__pets-section">
         <View className="profile__pets-header">
           <View className="profile__pets-title"><Text>我的宠物</Text></View>
-          <View className="profile__pets-add-btn">
+          <View 
+            className="profile__pets-add-btn"
+            onClick={() => Taro.navigateTo({ url: '/pages/pet-add/index' })}
+          >
             <Text>+ 添加</Text>
           </View>
         </View>

@@ -18,6 +18,10 @@
     -webkit-backdrop-filter: blur(24px);
     padding: 48px 24px 16px;
     z-index: 20;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__title {
@@ -26,9 +30,33 @@
     color: $color-gray-800;
   }
 
+  &__messages-btn {
+    position: relative;
+    font-size: 24px;
+    padding: 8px;
+    margin-right: -8px;
+    transition: transform 0.2s ease;
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  &__messages-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444; // red-500
+    border-radius: 50%;
+    border: 2px solid $color-white;
+  }
+
   &__feed {
     flex: 1;
     width: 100%;
+    height: 100vh; /* 强制指定高度以激活小程序中的 ScrollView 滚动 */
     /* padding moved to inner container to prevent ScrollView webview bug */
   }
 
