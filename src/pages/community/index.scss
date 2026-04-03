@@ -29,13 +29,14 @@
   &__feed {
     flex: 1;
     width: 100%;
-    padding: 112px 16px 128px;
-    box-sizing: border-box;
+    /* padding moved to inner container to prevent ScrollView webview bug */
   }
 
   &__post-list {
     display: flex;
     flex-direction: column;
+    padding: 112px 16px 128px;
+    box-sizing: border-box;
   }
 
   &__fab {
